@@ -1,0 +1,21 @@
+type Blog {
+  id: Id!
+  name: String!
+  posts: [Post]!
+}
+
+type Post {
+  id: Id!
+  name: String!
+  blog: Blog!
+  comments: [Comment]!
+}
+
+type Comment {
+  text: String!
+  authorEmail: String!
+  post: Post!
+  date: Date!
+}
+
+
