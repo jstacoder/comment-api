@@ -1,21 +1,54 @@
-type Blog {
+type BlogType {
   id: Id!
   name: String!
-  posts: [Post]!
+  posts: [PostType]!
 }
 
-type Post {
+input BlogInput {
+  name: String!
+}
+
+type PostType {
   id: Id!
   name: String!
   blog: Blog!
-  comments: [Comment]!
+  comments: [CommentType]!
 }
 
-type Comment {
+input PostInput {
+  name: String!
+  blogId: ID!
+}
+
+type CommentType {
+  id: ID!
   text: String!
   authorEmail: String!
-  post: Post!
+  post: PostType!
   date: Date!
 }
 
+input CommentInput {
+  text: String!
+  authorEmail: String!
+  postId: ID!  
+}
+
+type Query {
+  hello: String
+
+  getComment(id: ID): [CommentType]
+
+  getComments(
+    postId: ID 
+    blogId: ID
+  ): [CommentType]
+  
+}
+
+type Mutation {
+  createBlog(input: BlogInput!): BlogType!
+  createPost(input: PostInput!): PostType!
+  createComment(input: CommentInput!): CommentType!
+}
 
