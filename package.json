@@ -14,6 +14,8 @@
     "babelify": "^10.0.0",
     "browserify": "^16.5.0",
     "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
     "graphene-js": "^0.5.2",
     "graphene-sequelize": "^0.1.0",
     "gulp-babel": "^8.0.0",
@@ -28,8 +30,9 @@
     "window": "^4.2.6"
   },
   "scripts": {
-    "prestart": "babel index.es6 > index.js",
-    "start": "node -r esm index.js"
+    "pretest": "babel test.es6 > test.js",
+    "test": "node -r esm test.js", 
+    "start":"node -r esm index.es6"
   },
   "devDependencies": {
     "gulp": "^4.0.2"
