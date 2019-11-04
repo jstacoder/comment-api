@@ -4,7 +4,6 @@ import { ID,Argument, Date as GrapheneDate, NonNull, ObjectType, InputObjectType
 import Comment from './models/Comment'
 import Blog from './models/Blog'
 import Post from './models/Post'
-import { sequelize } from './db-init'
 
 @ObjectType()
 class BlogType{
