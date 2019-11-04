@@ -32,6 +32,7 @@
   "scripts": {
     "pretest": "babel test.es6 > test.js",
     "test": "node -r esm test.js", 
+    "prestart": "babel schema.es6  > schema.js",
     "start":"node -r esm index.es6"
   },
   "devDependencies": {
