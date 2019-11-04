@@ -8,15 +8,7 @@ Comment.init({
     id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true, },
     text: {type: Sequelize.TEXT, allowNull: false},
     authorEmail: { type: Sequelize.STRING, allowNull: false },
-    date: { type: Sequelize.DATEONLY, default: Sequelize.NOW},
-    // postId: {
-    //     type: Sequelize.INTEGER,
-    //     references: {
-    //         model: 'Posts',
-    //         key: 'id',
-    //         deferrable: Sequelize.Deferrable.INITIALLY_DEFFERRED, 
-    //     }
-    // },
+    date: { type: Sequelize.DATEONLY, default: Sequelize.NOW},   
 }, {sequelize, modelName: 'comment' })
 
 

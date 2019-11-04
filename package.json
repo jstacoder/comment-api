@@ -25,15 +25,16 @@
     "gulpify": "^0.1.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.2",
+    "sequelize-cli": "^5.5.1",
     "sqlite3": "^4.1.0",
     "vinyl-source-stream": "^2.0.0",
     "window": "^4.2.6"
   },
   "scripts": {
     "pretest": "babel test.es6 > test.js",
-    "test": "node -r esm test.js", 
-    "prestart": "babel schema.es6  > schema.js",
-    "start":"node -r esm index.es6"
+    "test": "node -r esm test.js",
+    "prestart": "babel schema.es6  > schema.js && node -r esm create-db.js",
+    "start": "node -r esm index.es6"
   },
   "devDependencies": {
     "gulp": "^4.0.2"
