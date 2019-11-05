@@ -9,7 +9,7 @@ import Post from './models/Post'
 class BlogType{
     @Field(ID) id
     @Field(String) name
-}
+}       
 
 @InputObjectType()
 class BlogInput {
@@ -68,13 +68,18 @@ class Query {
     }
 
     @Field(BlogType, {args: {id: ID}})
-    getBlog = ({id}) =>Blog.findByPk(id)
+    getBlog({id}){ 
+        return  Blog.findByPk(id)
+    }
 
     @Field(PostType, { args: { id: ID}})
-    getPost = ({id}) =>Post.findByPk(id)
-    
+    getPost({id}){
+        return Post.findByPk(id)
+    }
     @Field([BlogType])
-    getBlogs = () => Blog.findAll()
+    getBlogs(){
+        return Blog.findAll()
+    }
 
     @Field([PostType], { args: { blogId: ID}})
     getPosts({blogId}){
