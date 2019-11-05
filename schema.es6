@@ -66,10 +66,16 @@ class Query {
     hello(){
         return "Jello"
     }
+
+    @Field(BlogType, {args: {id: ID}})
+    getBlog = ({id}) =>Blog.findByPk(id)
+
     @Field(PostType, { args: { id: ID}})
-    getPost({id}){
-        return Post.findByPk(id)
-    }
+    getPost = ({id}) =>Post.findByPk(id)
+    
+    @Field([BlogType])
+    getBlogs = () => Blog.findAll()
+
     @Field([PostType], { args: { blogId: ID}})
     getPosts({blogId}){
         if(!!blogId){
