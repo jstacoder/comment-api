@@ -1,3 +1,3 @@
 import { sequelize } from './db-init'
 
-sequelize.sync()
+sequelize.sync({force: true})
