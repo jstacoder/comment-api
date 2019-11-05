@@ -66,6 +66,17 @@ class Query {
     hello(){
         return "Jello"
     }
+    @Field(PostType, { args: { id: ID}})
+    getPost({id}){
+        return Post.findByPk(id)
+    }
+    @Field([PostType], { args: { blogId: ID}})
+    getPosts({blogId}){
+        if(!!blogId){
+            return Blog.findByPk(blogId).then(blog=> Post.findAll({where: {blogId: blogId}}))
+        }
+        return Post.findAll()
+    }
     @Field(CommentType, { args: { id: ID } })
     getComment({id}){
         return Comment.findByPk(id)
@@ -73,10 +84,10 @@ class Query {
     @Field([CommentType], { args: { postId: ID, blogId: ID}})
     getComments({postId, blogId}){
         if(!!postId){
-            return Post.findByPk(postId).then(post=>  Comment.findAll({where: {postId: post.id}}))
+            return Comment.findAll({where: {postId: post.id}})
         }
         if(!!blogId){
-            return Blog.findByPk(blogId).then(blog=> Post.findAll({where: { blogId: blog.id}}).then(posts=> posts.map(post=> Comment.findAll({where: {postId: post.id}}))))
+            return Post.findAll({where: { blogId: blog.id}}).then(posts=> posts.map(post=> Comment.findAll({where: {postId: post.id}})))
         }
         return Comment.findAll()
     }
