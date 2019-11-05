@@ -87,7 +87,7 @@ class Query {
             return Comment.findAll({where: {postId: post.id}})
         }
         if(!!blogId){
-            return Post.findAll({where: { blogId: blog.id}}).then(posts=> posts.map(post=> Comment.findAll({where: {postId: post.id}})))
+            return Post.findAll({where: { blogId }}).then(posts=> posts.map(post=> Comment.findAll({where: {postId: post.id}})))
         }
         return Comment.findAll()
     }
