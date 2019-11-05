@@ -84,7 +84,7 @@ class Query {
     @Field([CommentType], { args: { postId: ID, blogId: ID}})
     getComments({postId, blogId}){
         if(!!postId){
-            return Comment.findAll({where: {postId: post.id}})
+            return Comment.findAll({where: {postId}})
         }
         if(!!blogId){
             return Post.findAll({where: { blogId }}).then(posts=> posts.map(post=> Comment.findAll({where: {postId: post.id}})))
