@@ -80,7 +80,7 @@ const main = async () =>{
             }
         }
     }else{
-        var result = await schema.execute(getQuery, null, null, {postId: 5})
+        var result = await schema.execute(getQuery, null, null, {postId: 1})
         console.log(JSON.stringify(result, null, 4))
     }
 }
