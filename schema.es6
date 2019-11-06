@@ -17,14 +17,6 @@ class BlogInput {
 }
 
 @ObjectType()
-class CreateBlog{
-    @InputField(NonNull(BlogInput)) input
-    
-    @Field(BlogType) blog
-        
-}
-
-@ObjectType()
 class PostType{
     @Field(ID) id
     @Field(String) name
@@ -68,39 +60,41 @@ class Query {
     }
 
     @Field(BlogType, {args: {id: ID}})
-    getBlog({id}){ 
-        return  Blog.findByPk(id)
+    async getBlog({id}){ 
+        return await Blog.findByPk(id)
     }
 
     @Field(PostType, { args: { id: ID}})
-    getPost({id}){
-        return Post.findByPk(id)
+    async getPost({id}){
+        return await Post.findByPk(id)
     }
     @Field([BlogType])
-    getBlogs(){
-        return Blog.findAll()
+    async getBlogs(){
+        return await Blog.findAll()
     }
 
     @Field([PostType], { args: { blogId: ID}})
-    getPosts({blogId}){
+    async getPosts({blogId}){
         if(!!blogId){
-            return Blog.findByPk(blogId).then(blog=> Post.findAll({where: {blogId: blogId}}))
+            const blog = await Blog.findByPk(blogId);
+            return await Post.findAll({ where: { blogId: blogId } });
         }
-        return Post.findAll()
+        return await Post.findAll()
     }
     @Field(CommentType, { args: { id: ID } })
-    getComment({id}){
-        return Comment.findByPk(id)
+    async getComment({id}){
+        return await Comment.findByPk(id)
     }
     @Field([CommentType], { args: { postId: ID, blogId: ID}})
-    getComments({postId, blogId}){
+    async getComments({postId, blogId}){
         if(!!postId){
-            return Comment.findAll({where: {postId}})
+            return await Comment.findAll({where: {postId}})
         }
         if(!!blogId){
-            return Post.findAll({where: { blogId }}).then(posts=> posts.map(post=> Comment.findAll({where: {postId: post.id}})))
+            const blogPosts = await Post.findAll({where: { blogId }})
+            return blogPosts.map(post=> await Comment.findAll({where: {postId: post.id}}))
         }
-        return Comment.findAll()
+        return await Comment.findAll()
     }
 }
 
@@ -121,7 +115,7 @@ class Mutation{
     @Field(CommentType, { args: {input: CommentInput}})
     createComment({input}){
         const now = new Date
-        return Comment.create({...input, date: (new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())).toUTCString())})
+        return Comment.create({...input})
     }
 }
 
