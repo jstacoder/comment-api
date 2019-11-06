@@ -1,5 +1,5 @@
 //import { ObjectType, Field, Schema } from 'graphene-js'
-import { ID,Argument, Date as GrapheneDate, NonNull, ObjectType, InputObjectType, InputField, Field, Schema } from 'graphene-js';
+import { ID,Argument, DateTime as GrapheneDateTime, NonNull, ObjectType, InputObjectType, InputField, Field, Schema } from 'graphene-js';
 
 import Comment from './models/Comment'
 import Blog from './models/Blog'
@@ -50,7 +50,7 @@ class CommentType{
     post(){
         return Post.findOne({where: { id: this.postId}})
     }
-    @Field(GrapheneDate) date    
+    @Field(GrapheneDateTime) date    
 }
 
 @InputObjectType()
