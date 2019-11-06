@@ -121,7 +121,7 @@ class Mutation{
     @Field(CommentType, { args: {input: CommentInput}})
     createComment({input}){
         const now = new Date
-        return Comment.create({...input, date: (new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())))}) 
+        return Comment.create({...input, date: (new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())).toUTCString())})
     }
 }
 
