@@ -50,7 +50,7 @@ class CommentType{
     post(){
         return Post.findOne({where: { id: this.postId}})
     }
-    @Field(GrapheneDateTime) date    
+    @Field(String) date
 }
 
 @InputObjectType()
