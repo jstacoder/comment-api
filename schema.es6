@@ -120,7 +120,7 @@ class Mutation{
 
     @Field(CommentType, { args: {input: CommentInput}})
     createComment({input}){
-        return Comment.create({...input, date: (new Date).toUTCString()})
+        return Comment.create({...input, date: (new Date).toLocaleDateString()})
     }
 }
 
