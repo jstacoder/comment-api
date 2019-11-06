@@ -42,7 +42,7 @@ class CommentType{
     post(){
         return Post.findOne({where: { id: this.postId}})
     }
-    @Field(String) dateAdded
+    @Field(String) createdAt
 }
 
 @InputObjectType()
