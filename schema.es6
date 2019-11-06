@@ -42,7 +42,7 @@ class CommentType{
     post(){
         return Post.findOne({where: { id: this.postId}})
     }
-    @Field(String) date
+    @Field(String) dateAdded
 }
 
 @InputObjectType()
@@ -92,7 +92,7 @@ class Query {
         }
         if(!!blogId){
             const blogPosts = await Post.findAll({where: { blogId }})
-            return blogPosts.map(post=> await Comment.findAll({where: {postId: post.id}}))
+            return blogPosts.map(async post=> await Comment.findAll({where: {postId: post.id}}))
         }
         return await Comment.findAll()
     }
