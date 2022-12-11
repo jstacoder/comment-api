@@ -15,7 +15,7 @@
     "browserify": "^16.5.0",
     "cors": "^2.8.5",
     "esm": "^3.2.25",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-graphql": "^0.9.0",
     "graphene-js": "^0.5.2",
     "graphene-sequelize": "^0.1.0",
